@@ -5,6 +5,8 @@
  */
 package midtermproject;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dell
@@ -32,8 +34,8 @@ public class AdminLogin1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        AdminName = new javax.swing.JTextField();
+        AdminPassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
@@ -56,13 +58,29 @@ public class AdminLogin1 extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Password");
 
-        jTextField1.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        AdminName.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
+        AdminName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminNameActionPerformed(evt);
+            }
+        });
+
+        AdminPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminPasswordActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("High Tower Text", 0, 14)); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton1KeyPressed(evt);
             }
         });
 
@@ -82,8 +100,8 @@ public class AdminLogin1 extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))))
+                            .addComponent(AdminName)
+                            .addComponent(AdminPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))))
                 .addContainerGap(186, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -98,11 +116,11 @@ public class AdminLogin1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(AdminName, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1))
+                    .addComponent(AdminPassword))
                 .addGap(44, 44, 44)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
@@ -128,10 +146,64 @@ public class AdminLogin1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        MainMenu menu=new MainMenu();
+        if((AdminName.getText().trim().equalsIgnoreCase("Humna Ab"))&& (AdminPassword.getText().trim().equalsIgnoreCase("1234")))
+        {
+           MainMenu menu=new MainMenu();
         menu.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);  
+        }
+        else if(AdminName.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Enter your name");
+        }
+        else if(AdminPassword.getText().trim().isEmpty())
+        {
+          JOptionPane.showMessageDialog(null,"Enter your password");
+        }
+        else if(AdminName.getText().trim()!="Humna Ab")
+        {
+          JOptionPane.showMessageDialog(null,"Enter Correct user name");
+        }
+        else
+        {
+         JOptionPane.showMessageDialog(null,"Either user name or password is incorrect");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void AdminNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminNameActionPerformed
+        // TODO add your handling code here:
+        String Admin=AdminName.getText();
+        if(Admin=="Humna AB")
+        {
+          AdminName.setEditable(true);
+                  
+        }
+        else
+        {
+         JOptionPane.showMessageDialog(null, "Please Enter Correct Username Hint:Humna AB");
+         AdminName.setEditable(false);
+        }
+    }//GEN-LAST:event_AdminNameActionPerformed
+
+    private void AdminPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminPasswordActionPerformed
+        // TODO add your handling code here:
+        String Password=AdminPassword.getText();
+        if(Password=="1234")
+        {
+           AdminPassword.setEditable(true);
+        }
+        else
+        {
+         AdminPassword.setEditable(false);
+         JOptionPane.showMessageDialog(null,"Enter correct password hint:1234");
+        }
+    }//GEN-LAST:event_AdminPasswordActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jButton1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -169,13 +241,13 @@ public class AdminLogin1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AdminName;
+    private javax.swing.JPasswordField AdminPassword;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
